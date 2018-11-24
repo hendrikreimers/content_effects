@@ -1,0 +1,6 @@
+# Include the Animate CSS: https://daneden.github.io/animate.css/
+[globalVar = LIT:1 = {$plugin.content_effects.effects.enable.css.animate}]
+    page.includeCSSLibs.animateCSS = EXT:content_effects/Resources/Public/Stylesheets/animateMinimal.min.css
+[end]
+
+lib.contentElement.dataProcessing.5.dataVariables.frame_class.value.10.value = cfx animated {field:cfx_effect} delay-05s

@@ -1,0 +1,18 @@
+TCEFORM.tt_content.cfx_effect.removeItems := addToList(bounce, flash, pulse, rubberBand, shake, headShake, swing, tada, wobble, jello, hinge, jackInTheBox, heartBeat)
+TCEFORM.tt_content.cfx_effect.removeItems := addToList(bounceIn, bounceInDown, bounceInLeft, bounceInRight, bounceInUp)
+TCEFORM.tt_content.cfx_effect.removeItems := addToList(bounceOut, bounceOutDown, bounceOutLeft, bounceOutRight, bounceOutUp)
+#TCEFORM.tt_content.cfx_effect.removeItems := addToList(fadeIn, fadeInDown, fadeInLeft, fadeInRight, fadeInUp)
+TCEFORM.tt_content.cfx_effect.removeItems := addToList(fadeInDownBig, fadeInLeftBig, fadeInRightBig, fadeInUpBig)
+TCEFORM.tt_content.cfx_effect.removeItems := addToList(fadeOut, fadeOutDown, fadeOutDownBig, fadeOutLeft, fadeOutLeftBig, fadeOutRight, fadeOutRightBig, fadeOutUp, fadeOutUpBig)
+TCEFORM.tt_content.cfx_effect.removeItems := addToList(flipInX, flipInY, flipOutX, flipOutY)
+TCEFORM.tt_content.cfx_effect.removeItems := addToList(lightSpeedIn, lightSpeedOut)
+TCEFORM.tt_content.cfx_effect.removeItems := addToList(rotateIn, rotateInDownLeft, rotateInDownRight, rotateInUpLeft, rotateInUpRight, rotateOut, rotateOutDownLeft, rotateOutDownRight, rotateOutUpLeft, rotateOutUpRight)
+TCEFORM.tt_content.cfx_effect.removeItems := addToList(rollIn, rollOut)
+TCEFORM.tt_content.cfx_effect.removeItems := addToList(zoomIn, zoomInDown, zoomInLeft, zoomInRight, zoomInUp, zoomOut, zoomOutDown, zoomOutLeft, zoomOutRight, zoomOutUp)
+TCEFORM.tt_content.cfx_effect.removeItems := addToList(slideInDown, slideInLeft, slideInRight, slideInUp, slideOutDown, slideOutLeft, slideOutRight, slideOutUp)
+
+TCEFORM.tt_content {
+    cfx_infinite.disabled = 1
+    cfx_speed.disabled    = 1
+    cfx_delay.disabled    = 1
+}

@@ -1,0 +1,5 @@
+TCAdefaults.tt_content {
+    cfx_enable = 1
+    cfx_effect = fadeInUp
+    cfx_delay  = delay-05s
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2018-11-23T08:00:00Z" product-name="content_effects">
+        <header/>
+        <body>
+            <trans-unit id="default" xml:space="preserve">
+				<target>Standard</target>
+			</trans-unit>
+
+            <trans-unit id="cfxSheet" xml:space="preserve">
+				<target>Effekte</target>
+			</trans-unit>
+
+            <trans-unit id="cfx_enable" xml:space="preserve">
+				<target>Aktivieren</target>
+			</trans-unit>
+            <trans-unit id="cfx_effect" xml:space="preserve">
+				<target>Effekt</target>
+			</trans-unit>
+            <trans-unit id="cfx_infinite" xml:space="preserve">
+				<target>Endlos</target>
+			</trans-unit>
+            <trans-unit id="cfx_speed" xml:space="preserve">
+				<target>Geschwindigkeit</target>
+			</trans-unit>
+            <trans-unit id="cfx_delay" xml:space="preserve">
+				<target><![CDATA[Verzögerung]]></target>
+			</trans-unit>
+        </body>
+    </file>
+</xliff>

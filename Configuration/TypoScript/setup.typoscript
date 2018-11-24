@@ -1,0 +1,52 @@
+# Include the Animate CSS: https://daneden.github.io/animate.css/
+[globalVar = LIT:1 = {$plugin.content_effects.effects.enable.css.animate}]
+    page.includeCSSLibs.animateCSS = EXT:content_effects/Resources/Public/Stylesheets/animate.min.css
+    page.includeCSSLibs.animateCSS {
+        alternate                = 0
+        disableCompression       = 0
+        excludeFromConcatenation = 0
+        external                 = 0
+        forceOnTop               = 0
+        import                   = 0
+        media                    = screen
+    }
+[end]
+
+# Include jQuery 3.3.1
+[globalVar = LIT:1 = {$plugin.content_effects.effects.enable.js.jquery}]
+    page.includeJSLibs.jquery = EXT:content_effects/Resources/Public/JavaScript/Libs/jquery.min.js
+    page.includeJSLibs.jquery.forceOnTop = 1
+[end]
+
+# InView Effects
+[globalVar = LIT:1 = {$plugin.content_effects.effects.enable.js.scrollfy}]
+    page.includeJSFooterlibs.scrollfy   = EXT:content_effects/Resources/Public/JavaScript/Libs/jquery.scrollfy.min.js
+    page.includeJSFooter.contentEffects = EXT:content_effects/Resources/Public/JavaScript/effects.min.js
+
+    page.includeCSS.contentEffects = EXT:content_effects/Resources/Public/Stylesheets/effects.min.css
+[end]
+
+# Extend the [data.frame_class] variable with the effects
+#   no overwrite of the fluid_styled_content Layout :-)
+lib.contentElement.dataProcessing.5 = K23\ContentEffects\DataProcessing\DataExtendProcessor
+lib.contentElement.dataProcessing.5.addSpaceToValue = 1
+lib.contentElement.dataProcessing.5.dataVariables {
+    frame_class {
+        method = append
+
+        value = COA
+        value {
+            if.isTrue.field = cfx_enable
+
+            10 = TEXT
+            #10.value = animated cfx-{field:cfx_effect} {field:cfx_speed} {field:cfx_delay}
+            10.value = cfx animated {field:cfx_effect} {field:cfx_speed} {field:cfx_delay}
+            10.insertData = 1
+
+            20 = TEXT
+            20.if.isTrue.field = cfx_infinite
+            20.value = infinite
+            20.noTrimWrap = | ||
+        }
+    }
+}

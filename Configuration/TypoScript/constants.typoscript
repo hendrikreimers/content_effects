@@ -1,0 +1,10 @@
+plugin.content_effects.effects.enable {
+    # cat=plugin.tx_contenteffects_includes/general; type=boolean; label=Include jQuery as FooterLib
+    js.jQuery = 0
+
+    # cat=plugin.tx_contenteffects_include/general; type=boolean; label=Include jQuery Scrollfy Plugin as FooterLib
+    js.scrollfy = 1
+
+    # cat=plugin.tx_contenteffects_include/general; type=boolean; label=Include Animate CSS
+    css.animate = 1
+}
