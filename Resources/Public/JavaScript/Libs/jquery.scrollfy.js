@@ -12,6 +12,10 @@
  *    jQuery v3.3.1+
  *    Modern Browsers (IE 10+, ...)
  *
+ * Hint:
+ *    If you want that the elements are visible on load,
+ *    you need to add the event listeners first and call the plugin at last.
+ *    see the demos for details.
  */
 
 (function($) { $.fn.scrollfy = function(options) {
@@ -33,7 +37,7 @@
 
         scrollTimeout:    250,
         directionTimeout: 50,
-        listenTo:         'scroll touchmove resize load',
+        listenTo:         'scroll touchmove resize',
 		inviewIdentifier: 'scrollfy-inview'
     };
 
@@ -61,6 +65,7 @@
             settings  = $.extend({}, settings, options);
 
             methods.bindListener();
+            methods.checkElementsView(data.self);
 
             return data.self;
         },
@@ -209,10 +214,7 @@
 
             // iterate each element and check position
             $(elements).each(function(k, el) {
-                // event object placeholder
-				var event;
-				
-				// Element positions
+                // Element positions
                 var elementOffset = methods.getElementOffset(el),
                     elementSize   = methods.getElementSize(el, true, true);
 				
