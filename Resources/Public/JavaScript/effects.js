@@ -11,7 +11,7 @@ $(function() {
     //     .one('animationend oAnimationEnd mozAnimationEnd webkitAnimationEnd', function(e) {
     //         $(this).removeClass('animated fade ' + $(this).data('cfx')).removeData('cfx');
     //     });
-    $('.animated').scrollfy().one('scrollfy:inView', function(e) {
+    $('.animated').one('scrollfy:inView', function(e) {
         $(this).removeClass('cfx');
-    });
+    }).scrollfy();
 });
