@@ -13,7 +13,7 @@
 [end]
 
 # Include jQuery 3.3.1
-[globalVar = LIT:1 = {$plugin.content_effects.effects.enable.js.jquery}]
+[globalVar = LIT:1 = {$plugin.content_effects.effects.enable.js.jQuery}]
     page.includeJSLibs.jquery = EXT:content_effects/Resources/Public/JavaScript/Libs/jquery.min.js
     page.includeJSLibs.jquery.forceOnTop = 1
 [end]
