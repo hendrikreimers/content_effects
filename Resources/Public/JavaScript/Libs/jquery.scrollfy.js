@@ -38,7 +38,9 @@
         scrollTimeout:    250,
         directionTimeout: 50,
         listenTo:         'scroll touchmove resize',
-		inviewIdentifier: 'scrollfy-inview'
+		inviewIdentifier: 'scrollfy-inview',
+
+        respectElementMargin: false
     };
 
     // Internal data storage
@@ -216,42 +218,36 @@
             $(elements).each(function(k, el) {
                 // Element positions
                 var elementOffset = methods.getElementOffset(el),
-                    elementSize   = methods.getElementSize(el, true, true);
+                    elementSize   = methods.getElementSize(el, true, settings.respectElementMargin);
 				
 				// fire only ones the event
 				var inview = $(el).data(settings.inviewIdentifier);
 				
 				// viewport tollerances
-                var elOffsetTop = ( $(el).data(settings.offsetAttrTop) )    ? $(el).data(settings.offsetAttrTop)    : settings.defaultOffset,
-                    elOffsetBtm = ( $(el).data(settings.offsetAttrBottom) ) ? $(el).data(settings.offsetAttrBottom) : settings.defaultOffset;
+                var elOffsetTopTollerance = ( $(el).data(settings.offsetAttrTop) )    ? $(el).data(settings.offsetAttrTop)    : settings.defaultOffset,
+                    elOffsetBtmTollerance = ( $(el).data(settings.offsetAttrBottom) ) ? $(el).data(settings.offsetAttrBottom) : settings.defaultOffset;
 				
 				// viewport decisions
-				var elTopOffView    = elementOffset.top > viewportSize.height + viewportOffset.top,
-					elBottomOffView = elementOffset.top + elementSize.height < viewportOffset.top,
-					
-					elTopInView     = elementOffset.top + elOffsetTop < viewportOffset.top + viewportSize.height,
-					elBottomInView  = elementOffset.top + elementSize.height - elOffsetBtm > viewportOffset.top;
-				
-				var elBottomInView = elementOffset.top + elementSize.height > viewportOffset.top,
-					elTopInview = elementOffset.top < viewportOffset.top + viewportSize.height;
-				
-                // check if element already in view
+				var elTopIsInViewOfTop    = (elementOffset.top + elOffsetTopTollerance) > viewportOffset.top,
+                    elBtmIsInViewOfTop    = (elementOffset.top + elementSize.height - elOffsetTopTollerance) > viewportOffset.top,
+                    elTopIsInViewOfBottom = (elementOffset.top + elOffsetBtmTollerance) < (viewportOffset.top + viewportSize.height),
+                    elBtmIsInViewOfBottom = (elementOffset.top + elementSize.height + elOffsetBtmTollerance) < (viewportOffset.top + viewportSize.height);
+
+				// check if element already in view
                 if ( methods.elementInviewStatus(el) ) {
-                    // Top is inside view since bottom, and bottom is not outside top view
-                    if ( elTopOffView || elBottomOffView ) {
+                    if ( (!elTopIsInViewOfTop && !elBtmIsInViewOfTop) || (!elTopIsInViewOfBottom) ) {
                         methods.elementInviewStatus(el, false);
 
-						// Fires the OFF VIEW Event for this element
+                        // Fires the OFF VIEW Event for this element
                         methods.fireEvent(methods.setEventData(methods.getEventObj(settings.eventNames.offView), {
                             inview: methods.elementInviewStatus(el)
                         }), el);
                     }
                 } else {
-                    // Full element ist on top or bottom out of view
-                    if ( elTopInView && elBottomInView ) {
+                    if ( (elTopIsInViewOfTop && elTopIsInViewOfBottom) || (elBtmIsInViewOfTop && elBtmIsInViewOfBottom) ) {
                         methods.elementInviewStatus(el, true);
 
-						// Fires the IN VIEW Event for this element
+                        // Fires the OFF VIEW Event for this element
                         methods.fireEvent(methods.setEventData(methods.getEventObj(settings.eventNames.inView), {
                             inview: methods.elementInviewStatus(el)
                         }), el);
